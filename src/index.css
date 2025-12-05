@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary-navy: 10 25 47;
+    --color-primary-gold: 212 175 55;
+    --color-primary-crimson: 139 0 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    @apply bg-gray-900 text-white antialiased overflow-x-hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-gold/50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-gold;
+  }
+
+  /* Selection Color */
+  ::selection {
+    @apply bg-primary-gold/30 text-white;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply backdrop-blur-lg bg-white/5 border border-white/10;
+  }
+
+  .glass-card {
+    @apply glass-effect rounded-2xl shadow-2xl;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-gold via-yellow-300 to-primary-gold bg-clip-text text-transparent;
+  }
+
+  .diplomatic-badge {
+    @apply inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-primary-navy/80 to-primary-crimson/80 text-white font-semibold text-sm border border-primary-gold/30;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold text-center mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-xl text-gray-300 text-center max-w-3xl mx-auto mb-12;
+  }
+
+  .btn-primary {
+    @apply px-8 py-3 rounded-lg bg-gradient-to-r from-primary-gold to-yellow-600 text-primary-navy font-bold hover:shadow-lg hover:shadow-primary-gold/30 transform hover:-translate-y-1 transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply px-8 py-3 rounded-lg border-2 border-primary-gold text-primary-gold font-bold hover:bg-primary-gold/10 transition-all duration-300;
+  }
+
+  .floating-element {
+    @apply animate-float;
+  }
+
+  .glowing-element {
+    @apply animate-glow;
+  }
+
+  .shimmer-effect {
+    @apply relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-shimmer;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animate-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .clip-path-circle {
+    clip-path: circle(50% at 50% 50%);
+  }
+}
+
+/* Custom Animations */
+@keyframes particle-float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+@keyframes scale-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Particles Background */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particle-float 15s infinite linear;
+}
+
+/* Loading Animation */
+.loading-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.loading-dots div {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d4af37;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dots div:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loading-dots div:nth-child(2) {
+  animation-delay: -0.16s;
+}
