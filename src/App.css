@@ -1,42 +1,208 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.App {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Light Theme Overrides */
+.light {
+  --color-primary-navy: 241 245 249;
+  --color-primary-gold: 212 175 55;
+  --color-primary-crimson: 185 28 28;
 }
 
-@keyframes logo-spin {
+.light body {
+  @apply bg-slate-50 text-gray-900;
+}
+
+.light .glass-effect {
+  @apply backdrop-blur-lg bg-white/80 border border-gray-200;
+}
+
+/* 3D Card Flip */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-3d:hover {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* Parallax Layers */
+.parallax-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.layer-1 {
+  transform: translateZ(-100px) scale(2);
+}
+
+.layer-2 {
+  transform: translateZ(-50px) scale(1.5);
+}
+
+.layer-3 {
+  transform: translateZ(0) scale(1);
+}
+
+/* Gradient Border */
+.gradient-border {
+  border: 2px solid transparent;
+  background: 
+    linear-gradient(var(--bg-color, #0a192f), var(--bg-color, #0a192f)) padding-box,
+    linear-gradient(45deg, #d4af37, #8b0000, #0a192f) border-box;
+}
+
+/* Shine Effect */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  opacity: 0;
+  transform: rotate(30deg);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.03) 60%,
+    rgba(255, 255, 255, 0.6) 61%,
+    rgba(255, 255, 255, 0.03) 62%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transition: all 0.8s;
+}
+
+.shine-effect:hover::after {
+  opacity: 1;
+  left: 140%;
+}
+
+/* Typing Cursor */
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  background-color: #d4af37;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Wave Animation */
+.wave-hand {
+  display: inline-block;
+  animation: wave 2s infinite;
+  transform-origin: 70% 70%;
+}
+
+/* Staggered Animation */
+.stagger-animation > * {
+  opacity: 0;
+  animation: fadeInUp 0.6s forwards;
+}
+
+.stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Progress Bar Animation */
+@keyframes progressFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--progress-width);
   }
 }
 
-.card {
-  padding: 2em;
+.progress-bar {
+  animation: progressFill 1.5s ease-out forwards;
 }
 
-.read-the-docs {
-  color: #888;
+/* Counter Animation */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter {
+  animation: countUp 0.5s ease-out forwards;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none;
+  }
+  
+  .mobile-stack {
+    flex-direction: column !important;
+  }
+  
+  .mobile-center {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+  
+  .mobile-full {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .break-after {
+    page-break-after: always;
+  }
 }
