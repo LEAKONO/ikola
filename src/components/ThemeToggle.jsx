@@ -6,22 +6,29 @@ const ThemeToggle = () => {
   const [theme, setTheme] = useState('dark');
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    setTheme(savedTheme);
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-    document.documentElement.classList.toggle('light', savedTheme === 'light');
+    // Check localStorage first
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.className = savedTheme;
+    } else {
+      // Check system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = prefersDark ? 'dark' : 'light';
+      setTheme(initialTheme);
+      document.documentElement.className = initialTheme;
+      localStorage.setItem('theme', initialTheme);
+    }
   }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
+    document.documentElement.className = newTheme;
     
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    document.documentElement.classList.toggle('light', newTheme === 'light');
-    
-    // Dispatch theme change event for other components
-    window.dispatchEvent(new CustomEvent('themeChange', { detail: newTheme }));
+    // Dispatch event for components that need to know
+    window.dispatchEvent(new CustomEvent('themechange', { detail: newTheme }));
   };
 
   return (
@@ -29,22 +36,14 @@ const ThemeToggle = () => {
       onClick={toggleTheme}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="relative w-14 h-7 rounded-full bg-gradient-to-r from-gray-700 to-gray-900 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-gold/30"
+      className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-white/10 dark:bg-gray-800/50 backdrop-blur-lg border border-white/20 dark:border-gray-700 flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300"
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
     >
-      <motion.div
-        className="absolute top-1/2 transform -translate-y-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-primary-gold to-yellow-600 flex items-center justify-center"
-        animate={{
-          x: theme === 'dark' ? 2 : 26,
-          transition: { type: 'spring', stiffness: 300, damping: 20 }
-        }}
-      >
-        {theme === 'dark' ? (
-          <FaMoon className="text-white text-xs" />
-        ) : (
-          <FaSun className="text-white text-xs" />
-        )}
-      </motion.div>
+      {theme === 'dark' ? (
+        <FaSun className="text-yellow-400 text-xl" />
+      ) : (
+        <FaMoon className="text-gray-700 text-xl" />
+      )}
     </motion.button>
   );
 };

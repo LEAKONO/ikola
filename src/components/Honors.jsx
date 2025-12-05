@@ -142,8 +142,6 @@ const Honors = () => {
     }
   ];
 
-  const allHonors = [...nationalOrders, ...honoraryDoctorates];
-  
   const filteredAwards = activeFilter === 'all' 
     ? awards 
     : awards.filter(award => award.category === activeFilter);
@@ -158,25 +156,25 @@ const Honors = () => {
   ];
 
   return (
-    <section id="honors" className="py-20 bg-gradient-to-b from-gray-900 to-primary-navy">
-      <div className="container mx-auto px-6">
+    <section id="honors" className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-900 to-gray-950">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         {/* Section Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
           <div className="inline-flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-gold to-yellow-600 flex items-center justify-center">
-              <FaAward className="text-white text-xl" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center flex-shrink-0">
+              <FaAward className="text-white text-lg sm:text-xl" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
-              Honors & <span className="text-primary-gold">Recognition</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+              Honors & <span className="text-yellow-500">Recognition</span>
             </h2>
           </div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-2">
             Nationally and internationally recognized through prestigious awards, honors, and honorary doctorates
           </p>
         </motion.div>
@@ -186,58 +184,50 @@ const Honors = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="mb-20"
+          className="mb-12 sm:mb-16"
         >
-          <h3 className="text-3xl font-bold text-center text-white mb-12">
-            National <span className="text-primary-gold">Orders & Honors</span>
+          <h3 className="text-2xl sm:text-3xl font-bold text-center text-white mb-6 sm:mb-8 md:mb-12">
+            National <span className="text-yellow-500">Orders & Honors</span>
           </h3>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {nationalOrders.map((order, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.4 + (index * 0.1), duration: 0.6 }}
-                whileHover={{ y: -10, scale: 1.02 }}
+                whileHover={{ y: -5 }}
                 className="relative group"
               >
-                {/* Glowing Effect */}
-                <div className="absolute -inset-1 bg-gradient-to-br from-primary-gold to-primary-crimson rounded-3xl blur opacity-0 group-hover:opacity-30 transition duration-500"></div>
-                
-                <div className="relative p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700">
+                <div className="relative p-4 sm:p-6 bg-gray-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-700">
                   {/* Ribbon */}
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <div className="px-4 py-1 bg-gradient-to-r from-primary-gold to-yellow-600 rounded-full text-primary-navy font-bold text-sm">
+                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                    <div className="px-3 py-1 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full text-gray-900 font-bold text-xs sm:text-sm">
                       National Honor
                     </div>
                   </div>
 
                   {/* Icon */}
-                  <div className={`w-20 h-20 rounded-xl bg-gradient-to-br ${order.color} flex items-center justify-center mx-auto mb-6`}>
-                    <div className="text-white text-3xl">
+                  <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-lg sm:rounded-xl bg-gradient-to-br ${order.color} flex items-center justify-center mx-auto mb-4 sm:mb-6`}>
+                    <div className="text-white text-2xl sm:text-3xl">
                       {order.icon}
                     </div>
                   </div>
 
                   {/* Content */}
-                  <h4 className="text-2xl font-bold text-white text-center mb-3">
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-white text-center mb-2 sm:mb-3">
                     {order.title}
                   </h4>
                   
-                  <div className="text-center mb-4">
-                    <p className="text-primary-gold text-lg font-semibold">{order.issuer}</p>
-                    <p className="text-gray-400">{order.year}</p>
+                  <div className="text-center mb-3 sm:mb-4">
+                    <p className="text-yellow-500 text-base sm:text-lg font-semibold">{order.issuer}</p>
+                    <p className="text-gray-400 text-sm sm:text-base">{order.year}</p>
                   </div>
 
-                  <p className="text-gray-300 text-center">
+                  <p className="text-gray-300 text-center text-sm sm:text-base">
                     {order.description}
                   </p>
-
-                  {/* Shine Effect */}
-                  <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                    <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-shimmer"></div>
-                  </div>
                 </div>
               </motion.div>
             ))}
@@ -249,52 +239,41 @@ const Honors = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="mb-20"
+          className="mb-12 sm:mb-16"
         >
-          <h3 className="text-3xl font-bold text-center text-white mb-12">
-            Honorary <span className="text-primary-gold">Doctorates</span>
+          <h3 className="text-2xl sm:text-3xl font-bold text-center text-white mb-6 sm:mb-8 md:mb-12">
+            Honorary <span className="text-yellow-500">Doctorates</span>
           </h3>
           
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
             {honoraryDoctorates.map((doctorate, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.8 + (index * 0.1), duration: 0.6 }}
-                whileHover={{ y: -10 }}
+                whileHover={{ y: -5 }}
                 className="group"
               >
-                <div className="h-full p-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl border border-gray-700 hover:border-primary-gold/50 transition-all duration-300 relative overflow-hidden">
-                  {/* Degree Ribbon */}
-                  <div className="absolute top-0 right-0">
-                    <div className="relative">
-                      <div className="w-32 h-32 overflow-hidden">
-                        <div className="absolute transform rotate-45 bg-gradient-to-r from-primary-gold to-yellow-600 text-primary-navy text-xs font-bold py-1 text-center w-48 top-8 -right-12">
-                          HONORIS CAUSA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-6">
-                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${doctorate.color} flex items-center justify-center flex-shrink-0`}>
-                      <div className="text-white text-2xl">
+                <div className="h-full p-4 sm:p-6 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl sm:rounded-2xl border border-gray-700 hover:border-yellow-500/50 transition-all duration-300">
+                  <div className="flex items-start gap-3 sm:gap-4 md:gap-6">
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-gradient-to-br ${doctorate.color} flex items-center justify-center flex-shrink-0`}>
+                      <div className="text-white text-xl sm:text-2xl">
                         {doctorate.icon}
                       </div>
                     </div>
 
                     <div className="flex-1">
-                      <h4 className="text-2xl font-bold text-white mb-2">
+                      <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">
                         {doctorate.title}
                       </h4>
                       
-                      <div className="mb-4">
-                        <p className="text-primary-gold text-lg font-semibold">{doctorate.university}</p>
-                        <p className="text-gray-400">{doctorate.year}</p>
+                      <div className="mb-3 sm:mb-4">
+                        <p className="text-yellow-500 text-base sm:text-lg font-semibold">{doctorate.university}</p>
+                        <p className="text-gray-400 text-sm sm:text-base">{doctorate.year}</p>
                       </div>
 
-                      <p className="text-gray-300">
+                      <p className="text-gray-300 text-sm sm:text-base">
                         {doctorate.description}
                       </p>
                     </div>
@@ -311,62 +290,64 @@ const Honors = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-            <div>
-              <h3 className="text-3xl font-bold text-white">
-                International <span className="text-primary-gold">Awards</span>
-              </h3>
-              <p className="text-gray-400">Recognition from global organizations and institutions</p>
-            </div>
+          <div className="mb-6 sm:mb-8 md:mb-12">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+              International <span className="text-yellow-500">Awards</span>
+            </h3>
+            <p className="text-gray-400 text-sm sm:text-base">Recognition from global organizations and institutions</p>
+          </div>
 
-            {/* Filter Buttons */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveFilter(category.id)}
-                  className={`px-4 py-2 rounded-full flex items-center gap-2 transition-all duration-300 ${
-                    activeFilter === category.id
-                      ? 'bg-gradient-to-r from-primary-gold to-yellow-600 text-primary-navy font-bold'
-                      : 'bg-white/5 text-gray-300 hover:bg-white/10'
-                  }`}
-                >
-                  <span>{category.label}</span>
-                  <span className="px-2 py-1 text-xs bg-white/20 rounded-full">
-                    {category.count}
-                  </span>
-                </button>
-              ))}
+          {/* Filter Buttons - Mobile Scrollable */}
+          <div className="mb-6 sm:mb-8">
+            <div className="overflow-x-auto pb-2 -mx-4 px-4">
+              <div className="flex space-x-2 min-w-max">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveFilter(category.id)}
+                    className={`px-3 sm:px-4 py-2 rounded-full flex items-center gap-2 transition-all duration-300 whitespace-nowrap text-sm ${
+                      activeFilter === category.id
+                        ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-gray-900 font-bold'
+                        : 'bg-white/5 text-gray-300 hover:bg-white/10'
+                    }`}
+                  >
+                    <span>{category.label}</span>
+                    <span className="px-2 py-1 text-xs bg-white/20 rounded-full">
+                      {category.count}
+                    </span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Awards Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
             {filteredAwards.map((award, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 1.2 + (index * 0.05), duration: 0.6 }}
-                whileHover={{ y: -5, scale: 1.02 }}
+                whileHover={{ y: -3, scale: 1.02 }}
                 className="group"
               >
-                <div className="h-full p-6 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 hover:border-primary-gold/30 transition-all duration-300">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${award.color} flex items-center justify-center mb-4`}>
-                    <div className="text-white text-xl">
+                <div className="h-full p-3 sm:p-4 bg-gray-800/30 backdrop-blur-sm rounded-lg sm:rounded-xl border border-gray-700 hover:border-yellow-500/30 transition-all duration-300">
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br ${award.color} flex items-center justify-center mb-3 sm:mb-4`}>
+                    <div className="text-white text-base sm:text-lg">
                       {award.icon}
                     </div>
                   </div>
 
-                  <h4 className="text-lg font-bold text-white mb-2 line-clamp-2">
+                  <h4 className="text-sm sm:text-base font-bold text-white mb-2 line-clamp-2">
                     {award.title}
                   </h4>
 
-                  <div className="flex items-center justify-between mt-4">
-                    <span className="px-3 py-1 text-xs bg-white/5 rounded-full text-gray-300">
+                  <div className="flex items-center justify-between mt-3 sm:mt-4">
+                    <span className="px-2 py-1 text-xs bg-white/5 rounded-full text-gray-300">
                       {award.category}
                     </span>
-                    <FaAward className="text-primary-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <FaAward className="text-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm" />
                   </div>
                 </div>
               </motion.div>
@@ -379,29 +360,29 @@ const Honors = () => {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 1.5, duration: 1 }}
-          className="mt-20 text-center max-w-3xl mx-auto"
+          className="mt-8 sm:mt-12 md:mt-16 text-center max-w-3xl mx-auto"
         >
-          <div className="glass-card p-8">
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <FaStar className="text-primary-gold text-3xl" />
-              <h4 className="text-2xl font-bold text-white">Recognition Philosophy</h4>
+          <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-700 p-4 sm:p-6 md:p-8">
+            <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <FaStar className="text-yellow-500 text-xl sm:text-2xl md:text-3xl" />
+              <h4 className="text-xl sm:text-2xl font-bold text-white">Recognition Philosophy</h4>
             </div>
-            <p className="text-xl text-gray-300">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-4 sm:mb-6">
               "Every award and honor represents not just personal achievement, but a commitment to service, leadership, and making a positive impact. These recognitions inspire continued dedication to excellence in diplomacy, security, and governance."
             </p>
             
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <div className="px-6 py-3 rounded-full bg-gradient-to-r from-primary-gold/10 to-primary-crimson/10 border border-primary-gold/30">
-                <span className="text-primary-gold font-bold">12+</span>
-                <span className="text-gray-300 ml-2">International Awards</span>
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4">
+              <div className="px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-gradient-to-r from-yellow-500/10 to-yellow-600/10 border border-yellow-500/30">
+                <span className="text-yellow-500 font-bold text-sm sm:text-base">12+</span>
+                <span className="text-gray-300 text-xs sm:text-sm ml-1">International Awards</span>
               </div>
-              <div className="px-6 py-3 rounded-full bg-gradient-to-r from-primary-gold/10 to-primary-crimson/10 border border-primary-gold/30">
-                <span className="text-primary-gold font-bold">4</span>
-                <span className="text-gray-300 ml-2">Honorary Doctorates</span>
+              <div className="px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-gradient-to-r from-yellow-500/10 to-yellow-600/10 border border-yellow-500/30">
+                <span className="text-yellow-500 font-bold text-sm sm:text-base">4</span>
+                <span className="text-gray-300 text-xs sm:text-sm ml-1">Honorary Doctorates</span>
               </div>
-              <div className="px-6 py-3 rounded-full bg-gradient-to-r from-primary-gold/10 to-primary-crimson/10 border border-primary-gold/30">
-                <span className="text-primary-gold font-bold">3</span>
-                <span className="text-gray-300 ml-2">National Honors</span>
+              <div className="px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-gradient-to-r from-yellow-500/10 to-yellow-600/10 border border-yellow-500/30">
+                <span className="text-yellow-500 font-bold text-sm sm:text-base">3</span>
+                <span className="text-gray-300 text-xs sm:text-sm ml-1">National Honors</span>
               </div>
             </div>
           </div>

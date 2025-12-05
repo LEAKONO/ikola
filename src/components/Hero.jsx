@@ -4,11 +4,7 @@ import {
   FaPhone, 
   FaEnvelope, 
   FaMedal, 
-  FaAward, 
-  FaChevronDown,
-  FaGlobe,
-  FaShieldAlt,
-  FaUserTie
+  FaDownload
 } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 
@@ -27,223 +23,250 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // Function to handle CV download
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/cv/dr-israel-ikola-cv.pdf';
+    link.download = 'Dr-Israel-Ikola-CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section 
       id="home" 
-      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-primary-navy via-gray-900 to-black"
-      style={{
-        transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-        transition: 'transform 0.3s ease-out'
-      }}
+      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-950 to-black"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary-gold rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-primary-crimson rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary-gold/5 to-primary-crimson/5 rounded-full animate-spin-slow"></div>
+        <div className="absolute top-10 left-5 sm:top-20 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+        <div className="absolute bottom-10 right-5 sm:bottom-20 sm:right-20 w-64 h-64 sm:w-96 sm:h-96 bg-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px] bg-gradient-to-r from-yellow-500/5 to-red-600/5 rounded-full animate-spin-slow"></div>
         
         {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.02] bg-[size:50px_50px] bg-[linear-gradient(to_right,#d4af37_1px,transparent_1px),linear-gradient(to_bottom,#d4af37_1px,transparent_1px)]"></div>
+        <div className="absolute inset-0 opacity-[0.02] bg-[size:30px_30px] sm:bg-[size:50px_50px] bg-[linear-gradient(to_right,#d4af37_1px,transparent_1px),linear-gradient(to_bottom,#d4af37_1px,transparent_1px)]"></div>
       </div>
 
-      {/* Floating Badges */}
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 1 }}
-        className="absolute top-10 right-10 hidden lg:block"
-      >
-        <div className="relative animate-float" style={{animationDelay: '1s'}}>
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary-gold to-primary-crimson rounded-full blur opacity-70"></div>
-          <div className="relative px-6 py-3 bg-primary-navy/90 backdrop-blur-sm rounded-full border border-primary-gold/30">
-            <span className="text-primary-gold font-bold">OGW Awardee</span>
-          </div>
-        </div>
-      </motion.div>
-
-      <div className="relative z-10 container mx-auto px-6 py-24">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 pb-12 sm:pt-24 sm:pb-16">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-center"
-          >
-            {/* Name with Glitch Effect */}
-            <div className="relative mb-8">
+          {/* Mobile First: Image at the top, content below */}
+          <div className="flex flex-col-reverse lg:flex-row lg:grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+            {/* Image Section - Comes first on mobile, second on desktop */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="w-full lg:hidden order-first mb-8 sm:mb-12"
+            >
+              {/* Mobile: Image at the top */}
+              <div className="relative mx-auto max-w-xs sm:max-w-sm">
+                {/* Decorative circles for mobile */}
+                <div className="absolute -top-3 -left-3 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-yellow-500 to-yellow-600 opacity-20 blur-xl"></div>
+                <div className="absolute -bottom-3 -right-3 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-red-600 to-red-700 opacity-20 blur-xl"></div>
+                
+                {/* Main Image Frame */}
+                <div className="relative z-10">
+                  <div className="absolute -inset-3 bg-gradient-to-br from-yellow-500 via-red-600 to-transparent rounded-2xl sm:rounded-3xl blur-xl opacity-30"></div>
+                  
+                  {/* Profile Image */}
+                  <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border-4 border-white/10 shadow-xl">
+                    <div className="w-full h-[300px] sm:h-[400px] bg-gradient-to-br from-gray-900 to-gray-950 flex items-center justify-center">
+                      <div className="text-center p-6">
+                        <div className="w-32 h-32 sm:w-48 sm:h-48 rounded-full bg-gradient-to-br from-yellow-500 to-red-600 flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                          <span className="text-white text-4xl sm:text-6xl font-bold">II</span>
+                        </div>
+                        <p className="text-gray-300 text-base sm:text-lg">Dr. Israel Ikola</p>
+                        <p className="text-yellow-500 text-xs sm:text-sm">Professional Portrait</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* OGW Awardee Badge for mobile */}
+                  <motion.div
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 1.2, duration: 0.8 }}
+                    className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6"
+                  >
+                    <div className="relative">
+                      <div className="absolute -inset-1 sm:-inset-2 bg-gradient-to-r from-yellow-500 to-red-600 rounded-full blur opacity-50"></div>
+                      <div className="relative px-4 py-2 sm:px-6 sm:py-3 bg-gray-900/90 backdrop-blur-sm rounded-full border border-yellow-500/30">
+                        <div className="flex items-center gap-1 sm:gap-2">
+                          <FaMedal className="text-yellow-500 text-sm sm:text-base" />
+                          <span className="text-yellow-500 font-bold text-xs sm:text-sm">OGW Awardee</span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Text Content - Comes second on mobile, first on desktop */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-center lg:text-left w-full"
+            >
+              {/* Name */}
               <motion.h1
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, type: "spring" }}
-                className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4"
               >
                 <span className="block text-white">DR.</span>
-                <span className="block gradient-text">ISRAEL IKOLA</span>
+                <span className="block bg-gradient-to-r from-yellow-500 to-yellow-300 bg-clip-text text-transparent">
+                  ISRAEL IKOLA
+                </span>
               </motion.h1>
-              
-              {/* Title Badges */}
-              <div className="flex flex-wrap justify-center gap-3 mt-8">
-                {['OGW', 'CBS', 'F.MEL', 'F.ISRM', 'SRMP', 'MDIS'].map((badge, idx) => (
-                  <motion.span
-                    key={badge}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.1 * idx, type: "spring" }}
-                    whileHover={{ scale: 1.1, y: -5 }}
-                    className="px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10 text-sm font-semibold text-white hover:border-primary-gold/50 hover:bg-primary-gold/10 transition-all duration-300"
+
+              {/* Animated Typing Title */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 1 }}
+                className="mb-6 sm:mb-8 h-16 sm:h-20"
+              >
+                <TypeAnimation
+                  sequence={[
+                    'Expert in Diplomacy & International Security',
+                    2000,
+                    'Senior Government & Diplomatic Leader',
+                    2000,
+                    'Honorary Doctorate Recipient',
+                    2000,
+                    'Nationally & Internationally Recognized',
+                    2000,
+                  ]}
+                  wrapper="div"
+                  speed={50}
+                  deletionSpeed={70}
+                  repeat={Infinity}
+                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-300 px-2"
+                />
+              </motion.div>
+
+              {/* Career Summary */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8, duration: 1 }}
+                className="mb-6 sm:mb-8"
+              >
+                <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed px-2 sm:px-0">
+                  My expertise in diplomacy, international security, and strategic governance is supported by a Ph.D. in International Studies, dual master's degrees, and specialized diplomas. Recognized nationally and internationally through honors, awards, and honorary doctorates.
+                </p>
+              </motion.div>
+
+              {/* Contact Info & CV Download */}
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 1, duration: 0.8 }}
+                className="mb-6 sm:mb-8"
+              >
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-lg mx-auto lg:mx-0">
+                  {/* Phone Button */}
+                  <a 
+                    href="tel:+254110006454" 
+                    className="flex items-center gap-3 px-4 py-3 sm:px-6 sm:py-3 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-yellow-500/50 hover:bg-yellow-500/10 transition-all duration-300 group"
                   >
-                    {badge}
-                  </motion.span>
-                ))}
-              </div>
-            </div>
-
-            {/* Animated Typing Title */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 1 }}
-              className="mb-12 h-24"
-            >
-              <TypeAnimation
-                sequence={[
-                  'Expert in Diplomacy & International Security',
-                  2000,
-                  'Senior Government & Diplomatic Leader',
-                  2000,
-                  'Honorary Doctorate Recipient',
-                  2000,
-                  'Nationally & Internationally Recognized',
-                  2000,
-                ]}
-                wrapper="div"
-                speed={50}
-                repeat={Infinity}
-                className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-300"
-              />
-            </motion.div>
-
-            {/* Career Summary */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 1 }}
-              className="max-w-4xl mx-auto mb-16"
-            >
-              <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                My expertise in diplomacy, international security, and strategic governance is supported by a Ph.D. in International Studies, dual master's degrees, and specialized diplomas. Recognized nationally and internationally through honors, awards, and honorary doctorates.
-              </p>
-            </motion.div>
-
-            {/* Action Buttons & Contact */}
-            <motion.div
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1, duration: 0.8 }}
-              className="flex flex-col md:flex-row items-center justify-center gap-8 mb-20"
-            >
-              {/* Contact Card */}
-              <div className="glass-card p-6 max-w-md">
-                <div className="flex flex-col sm:flex-row items-center gap-6">
-                  {/* Phone */}
-                  <div className="flex items-center gap-4 p-4 rounded-xl bg-primary-navy/50">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-gold to-yellow-600 flex items-center justify-center">
-                      <FaPhone className="text-white text-lg" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center flex-shrink-0">
+                      <FaPhone className="text-white text-sm sm:text-lg" />
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-400">Phone</p>
-                      <a 
-                        href="tel:+254110006454" 
-                        className="text-white font-semibold hover:text-primary-gold transition-colors"
-                      >
+                    <div className="text-left flex-1 min-w-0">
+                      <p className="text-xs sm:text-sm text-gray-400">Phone</p>
+                      <p className="text-white font-semibold text-sm sm:text-base group-hover:text-yellow-500 transition-colors truncate">
                         +254 110 006454
-                      </a>
+                      </p>
                     </div>
-                  </div>
+                  </a>
                   
-                  {/* Email */}
-                  <div className="flex items-center gap-4 p-4 rounded-xl bg-primary-navy/50">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-crimson to-red-600 flex items-center justify-center">
-                      <FaEnvelope className="text-white text-lg" />
+                  {/* Email Button */}
+                  <a 
+                    href="mailto:israelikola@gmail.com" 
+                    className="flex items-center gap-3 px-4 py-3 sm:px-6 sm:py-3 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-yellow-500/50 hover:bg-yellow-500/10 transition-all duration-300 group"
+                  >
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center flex-shrink-0">
+                      <FaEnvelope className="text-white text-sm sm:text-lg" />
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-400">Email</p>
-                      <a 
-                        href="mailto:israelikola@gmail.com" 
-                        className="text-white font-semibold hover:text-primary-gold transition-colors"
-                      >
+                    <div className="text-left flex-1 min-w-0">
+                      <p className="text-xs sm:text-sm text-gray-400">Email</p>
+                      <p className="text-white font-semibold text-sm sm:text-base group-hover:text-yellow-500 transition-colors truncate">
                         israelikola@gmail.com
-                      </a>
+                      </p>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Download CV Button - Full width on mobile, auto on larger */}
+                <motion.button
+                  onClick={handleDownloadCV}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3 mt-4 sm:mt-6 bg-gradient-to-r from-yellow-500 to-yellow-600 text-gray-900 font-bold rounded-lg hover:shadow-lg hover:shadow-yellow-500/30 transition-all duration-300 group"
+                >
+                  <FaDownload className="text-sm sm:text-base" />
+                  <span className="text-sm sm:text-base">Download CV</span>
+                </motion.button>
+              </motion.div>
+            </motion.div>
+
+            {/* Desktop Image - Hidden on mobile, shown on desktop */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="hidden lg:block w-full"
+            >
+              <div className="relative mx-auto max-w-md">
+                {/* Decorative circles for desktop */}
+                <div className="absolute -top-4 -left-4 w-20 h-20 rounded-full bg-gradient-to-br from-yellow-500 to-yellow-600 opacity-20 blur-xl"></div>
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-gradient-to-br from-red-600 to-red-700 opacity-20 blur-xl"></div>
+                
+                {/* Main Image Frame */}
+                <div className="relative z-10">
+                  <div className="absolute -inset-4 bg-gradient-to-br from-yellow-500 via-red-600 to-transparent rounded-3xl blur-xl opacity-30"></div>
+                  
+                  {/* Profile Image */}
+                  <div className="relative rounded-2xl overflow-hidden border-4 border-white/10 shadow-2xl">
+                    <div className="w-full h-[500px] bg-gradient-to-br from-gray-900 to-gray-950 flex items-center justify-center">
+                      <div className="text-center p-8">
+                        <div className="w-48 h-48 rounded-full bg-gradient-to-br from-yellow-500 to-red-600 flex items-center justify-center mx-auto mb-6">
+                          <span className="text-white text-6xl font-bold">II</span>
+                        </div>
+                        <p className="text-gray-300 text-lg">Dr. Israel Ikola</p>
+                        <p className="text-yellow-500 text-sm">Professional Portrait</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Quick Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  { icon: <FaGlobe />, value: '50+', label: 'State Visits' },
-                  { icon: <FaShieldAlt />, value: '20+', label: 'Programs' },
-                  { icon: <FaUserTie />, value: '100+', label: 'Engagements' },
-                  { icon: <FaAward />, value: '10+', label: 'Awards' }
-                ].map((stat, idx) => (
+                  {/* OGW Awardee Badge for desktop */}
                   <motion.div
-                    key={idx}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 1.2 + (idx * 0.1), type: "spring" }}
-                    whileHover={{ scale: 1.05 }}
-                    className="text-center p-4 rounded-xl bg-white/5 backdrop-blur-sm"
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 1.2, duration: 0.8 }}
+                    className="absolute -top-6 -right-6"
                   >
-                    <div className="text-2xl text-primary-gold mb-2">{stat.icon}</div>
-                    <div className="text-2xl font-bold text-white">{stat.value}</div>
-                    <div className="text-xs text-gray-400">{stat.label}</div>
+                    <div className="relative">
+                      <div className="absolute -inset-2 bg-gradient-to-r from-yellow-500 to-red-600 rounded-full blur opacity-50"></div>
+                      <div className="relative px-6 py-3 bg-gray-900/90 backdrop-blur-sm rounded-full border border-yellow-500/30">
+                        <div className="flex items-center gap-2">
+                          <FaMedal className="text-yellow-500" />
+                          <span className="text-yellow-500 font-bold">OGW Awardee</span>
+                        </div>
+                      </div>
+                    </div>
                   </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Scroll Indicator */}
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-              className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-            >
-              <div className="flex flex-col items-center">
-                <span className="text-sm text-gray-400 mb-2">Scroll to explore</span>
-                <div className="w-6 h-10 border-2 border-primary-gold/50 rounded-full flex justify-center">
-                  <motion.div
-                    animate={{ y: [0, 12, 0] }}
-                    transition={{ repeat: Infinity, duration: 1.5 }}
-                    className="w-1 h-3 bg-primary-gold rounded-full mt-2"
-                  />
                 </div>
               </div>
             </motion.div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Floating Medals */}
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-20 left-10 hidden lg:block"
-      >
-        <div className="relative">
-          <div className="absolute -inset-4 bg-gradient-to-r from-primary-gold/20 to-transparent rounded-full blur-xl"></div>
-          <div className="relative p-4 bg-primary-navy/50 backdrop-blur-sm rounded-2xl border border-primary-gold/30">
-            <div className="flex items-center gap-3">
-              <FaMedal className="text-primary-gold text-3xl" />
-              <div>
-                <h3 className="text-white font-bold">National Honors</h3>
-                <p className="text-primary-gold text-sm">Order of the Grand Warrior</p>
-              </div>
-            </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
