@@ -4,7 +4,8 @@ import {
   FaPhone, 
   FaEnvelope, 
   FaMedal, 
-  FaDownload
+  FaDownload,
+  FaExternalLinkAlt
 } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 
@@ -23,14 +24,10 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Function to handle CV download
-  const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/cv/dr-israel-ikola-cv.pdf';
-    link.download = 'Dr-Israel-Ikola-CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  // Function to handle CV view/download
+  const handleViewCV = () => {
+    // Open CV in a new tab
+    window.open('https://drive.google.com/file/d/1Za-HoFVEAGgVrk8amYPx2K9KxNO4zQ5g/view?usp=sharing', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -71,13 +68,33 @@ const Hero = () => {
                   
                   {/* Profile Image */}
                   <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border-4 border-white/10 shadow-xl">
-                    <div className="w-full h-[300px] sm:h-[400px] bg-gradient-to-br from-gray-900 to-gray-950 flex items-center justify-center">
-                      <div className="text-center p-6">
-                        <div className="w-32 h-32 sm:w-48 sm:h-48 rounded-full bg-gradient-to-br from-yellow-500 to-red-600 flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                          <span className="text-white text-4xl sm:text-6xl font-bold">II</span>
+                    <div className="w-full h-[300px] sm:h-[400px] relative bg-gradient-to-br from-gray-900 to-gray-950">
+                      {/* Your profile image */}
+                      <img 
+                        src="/images/profile.jpeg" 
+                        alt="Dr. Israel Ikola - Diplomat & Security Expert"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          console.error('Image failed to load:', e.target.src);
+                          // Fallback to initials if image fails
+                          e.target.style.display = 'none';
+                          const fallback = e.target.nextElementSibling;
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
+                      />
+                      
+                      {/* Fallback content (shown if image fails to load) */}
+                      <div 
+                        className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-950 flex items-center justify-center hidden"
+                        style={{ display: 'none' }}
+                      >
+                        <div className="text-center p-6">
+                          <div className="w-32 h-32 sm:w-48 sm:h-48 rounded-full bg-gradient-to-br from-yellow-500 to-red-600 flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                            <span className="text-white text-4xl sm:text-6xl font-bold">II</span>
+                          </div>
+                          <p className="text-gray-300 text-base sm:text-lg">Dr. Israel Ikola</p>
+                          <p className="text-yellow-500 text-xs sm:text-sm">Diplomat & Security Expert</p>
                         </div>
-                        <p className="text-gray-300 text-base sm:text-lg">Dr. Israel Ikola</p>
-                        <p className="text-yellow-500 text-xs sm:text-sm">Professional Portrait</p>
                       </div>
                     </div>
                   </div>
@@ -202,16 +219,18 @@ const Hero = () => {
                   </a>
                 </div>
 
-                {/* Download CV Button - Full width on mobile, auto on larger */}
+                {/* View CV Button - Opens Google Drive link in new tab */}
                 <motion.button
-                  onClick={handleDownloadCV}
+                  onClick={handleViewCV}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3 mt-4 sm:mt-6 bg-gradient-to-r from-yellow-500 to-yellow-600 text-gray-900 font-bold rounded-lg hover:shadow-lg hover:shadow-yellow-500/30 transition-all duration-300 group"
                 >
-                  <FaDownload className="text-sm sm:text-base" />
+                  <FaExternalLinkAlt className="text-sm sm:text-base" />
                   <span className="text-sm sm:text-base">Download CV</span>
                 </motion.button>
+                
+                
               </motion.div>
             </motion.div>
 
@@ -233,13 +252,33 @@ const Hero = () => {
                   
                   {/* Profile Image */}
                   <div className="relative rounded-2xl overflow-hidden border-4 border-white/10 shadow-2xl">
-                    <div className="w-full h-[500px] bg-gradient-to-br from-gray-900 to-gray-950 flex items-center justify-center">
-                      <div className="text-center p-8">
-                        <div className="w-48 h-48 rounded-full bg-gradient-to-br from-yellow-500 to-red-600 flex items-center justify-center mx-auto mb-6">
-                          <span className="text-white text-6xl font-bold">II</span>
+                    <div className="w-full h-[500px] relative bg-gradient-to-br from-gray-900 to-gray-950">
+                      {/* Your profile image */}
+                      <img 
+                        src="/images/profile.jpeg" 
+                        alt="Dr. Israel Ikola - Diplomat & Security Expert"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          console.error('Image failed to load:', e.target.src);
+                          // Fallback to initials if image fails
+                          e.target.style.display = 'none';
+                          const fallback = e.target.nextElementSibling;
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
+                      />
+                      
+                      {/* Fallback content (shown if image fails to load) */}
+                      <div 
+                        className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-950 flex items-center justify-center hidden"
+                        style={{ display: 'none' }}
+                      >
+                        <div className="text-center p-8">
+                          <div className="w-48 h-48 rounded-full bg-gradient-to-br from-yellow-500 to-red-600 flex items-center justify-center mx-auto mb-6">
+                            <span className="text-white text-6xl font-bold">II</span>
+                          </div>
+                          <p className="text-gray-300 text-lg">Dr. Israel Ikola</p>
+                          <p className="text-yellow-500 text-sm">Diplomat & Security Expert</p>
                         </div>
-                        <p className="text-gray-300 text-lg">Dr. Israel Ikola</p>
-                        <p className="text-yellow-500 text-sm">Professional Portrait</p>
                       </div>
                     </div>
                   </div>

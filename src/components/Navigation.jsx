@@ -19,6 +19,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [logoLoaded, setLogoLoaded] = useState(false);
 
   const navItems = [
     { name: 'Home', icon: <FaHome />, id: 'home' },
@@ -94,11 +95,36 @@ const Navigation = () => {
               className="flex items-center space-x-2 cursor-pointer"
               onClick={() => scrollToSection('home')}
             >
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center flex-shrink-0">
-                <span className="text-white font-bold text-sm sm:text-base">II</span>
+              {/* Logo Image Container - Using logo1.jpeg */}
+              <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg overflow-hidden bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center flex-shrink-0">
+                {/* Your navigation logo image */}
+                <img 
+                  src="/logo1.jpeg" 
+                  alt="Dr. Israel Ikola Logo"
+                  className={`w-full h-full object-cover transition-opacity duration-300 ${
+                    logoLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  onLoad={() => setLogoLoaded(true)}
+                  onError={(e) => {
+                    console.error('Logo failed to load:', e.target.src);
+                    e.target.style.display = 'none';
+                    // Show fallback initials
+                    const fallback = e.target.nextElementSibling;
+                    if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+                
+                {/* Fallback initials (shown if logo fails to load) */}
+                <div 
+                  className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center"
+                  style={{ display: logoLoaded ? 'none' : 'flex' }}
+                >
+                  <span className="text-white font-bold text-sm sm:text-base">II</span>
+                </div>
               </div>
+              
               <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-white whitespace-nowrap">
-                Israel Ikola
+                Dr.Israel Ikola
               </h1>
             </motion.div>
 
@@ -166,8 +192,25 @@ const Navigation = () => {
               <div className="p-4 sm:p-6 border-b border-white/10">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">II</span>
+                    {/* Mobile Logo - Using logo1.jpeg */}
+                    <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center">
+                      {/* Your navigation logo image */}
+                      <img 
+                        src="/logo1.jpeg" 
+                        alt="Dr. Israel Ikola Logo"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          // Show fallback initials
+                          const fallback = e.target.nextElementSibling;
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
+                      />
+                      
+                      {/* Fallback initials (shown if logo fails to load) */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center hidden">
+                        <span className="text-white font-bold text-lg">II</span>
+                      </div>
                     </div>
                     <div>
                       <h2 className="text-lg sm:text-xl font-bold text-white">Israel Ikola</h2>

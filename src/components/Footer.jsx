@@ -13,6 +13,7 @@ import { useState, useEffect } from 'react';
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [footerLogoLoaded, setFooterLogoLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,8 +72,30 @@ const Footer = () => {
           {/* Brand & Description */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4 sm:mb-6">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center flex-shrink-0">
-                <span className="text-white font-bold text-base sm:text-lg">II</span>
+              {/* Footer Logo - Using logo1.jpeg */}
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center flex-shrink-0">
+                <img 
+                  src="/logo1.jpeg" 
+                  alt="Dr. Israel Ikola Logo"
+                  className={`w-full h-full object-cover transition-opacity duration-300 ${
+                    footerLogoLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  onLoad={() => setFooterLogoLoaded(true)}
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    // Show fallback initials
+                    const fallback = e.target.nextElementSibling;
+                    if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+                
+                {/* Fallback initials */}
+                <div 
+                  className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center"
+                  style={{ display: footerLogoLoaded ? 'none' : 'flex' }}
+                >
+                  <span className="text-white font-bold text-base sm:text-lg">II</span>
+                </div>
               </div>
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white">
