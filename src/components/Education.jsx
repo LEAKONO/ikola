@@ -16,13 +16,13 @@ const Education = () => {
 
   const educationTimeline = [
     {
-      degree: 'Ph.D (Diploma) – International Studies',
-      institution: 'University of Nairobi',
+      degree: 'Doctor of Philosophy in International Studies (Ph.D)',
+      institution: 'Department of Diplomacy and International Studies, University of Nairobi',
       icon: <FaGraduationCap />,
       color: 'text-purple-400',
-      year: 'Doctoral Studies',
-      description: 'Advanced research in international relations and diplomatic studies',
-      highlights: ['International Relations', 'Diplomatic Studies', 'Research Methodology']
+      year: 'Doctoral Degree',
+      description: 'Advanced research in international relations, diplomatic studies, and global governance at the Department of Diplomacy and International Studies',
+      highlights: ['International Relations', 'Diplomatic Studies', 'Research Methodology', 'Global Governance', 'Foreign Policy Analysis']
     },
     {
       degree: 'Master of Arts in Diplomacy, Intelligence & Security (MDIS)',
@@ -114,8 +114,6 @@ const Education = () => {
               transition={{ delay: index * 0.15, duration: 0.6 }}
               className={`relative mb-6 sm:mb-8 md:mb-12 ${index % 2 === 0 ? 'md:w-1/2 md:pr-8 md:mr-auto' : 'md:w-1/2 md:pl-8 md:ml-auto'}`}
             >
-              {/* Timeline Dot */}
-              {/* <div className="absolute top-6 left-3 sm:left-4 md:left-1/2 transform md:-translate-x-1/2 w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-br from-yellow-500 to-yellow-600 border-2 sm:border-4 border-gray-900 z-10 hidden md:block"></div> */}
 
               {/* Mobile Indicator */}
               <div className={`absolute top-6 left-3 w-0.5 h-full bg-gradient-to-b from-yellow-500/50 to-transparent md:hidden ${index < educationTimeline.length - 1 ? 'block' : 'hidden'}`}></div>
