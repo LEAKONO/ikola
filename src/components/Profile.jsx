@@ -64,8 +64,7 @@ const Profile = () => {
             </h2>
           </div>
           <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-2">
-            Senior leader with expertise in diplomacy, international security, and strategic governance
-          </p>
+           Senior leader with expertise in Diplomacy, Intelligence, lnternational Security, and Strategic Governance          </p>
         </motion.div>
 
         {/* Profile Summary */}
