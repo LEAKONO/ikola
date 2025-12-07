@@ -82,7 +82,7 @@ const Profile = () => {
               </h3>
               <div className="space-y-3 sm:space-y-4 text-gray-300">
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed">
-                  My expertise in diplomacy, international security, and strategic governance is supported by a Ph.D. in International Studies, dual master's degrees, and specialized diplomas in peacebuilding, conflict management, gender, and leadership.
+                  My expertise in Diplomacy, Intelligence, lnternational Security, and Strategic Governance is supported by a Ph.D. in International Studies, dual master's degrees, and specialized diplomas in peacebuilding, conflict management, gender, and leadership.
                 </p>
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                   I have held senior government and diplomatic roles, including Director of Political and Diplomatic Protocol at the Ministry of Foreign Affairs, Corporate Affairs & Intelligence Analyst at the Office of the National Security Advisor, and Advisor to senior government officials.

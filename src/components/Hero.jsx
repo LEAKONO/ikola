@@ -27,7 +27,7 @@ const Hero = () => {
   // Function to handle CV view/download
   const handleViewCV = () => {
     // Open CV in a new tab
-    window.open('https://drive.google.com/file/d/1sTuNGbKQ4E5NU7jhzuMPCyE8cpernrBl/view?usp=sharing', '_blank', 'noopener,noreferrer');
+    window.open('https://drive.google.com/file/d/1-k_w0apZaNT9xXk7d156z6PKEygMN_ok/view?usp=sharing', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -149,7 +149,7 @@ const Hero = () => {
               >
                 <TypeAnimation
                   sequence={[
-                    'Expert in Diplomacy & International Security',
+                    'Expert in Diplomacy, Intelligence & International Security',
                     2000,
                     'Senior Government & Diplomatic Leader',
                     2000,
@@ -174,7 +174,7 @@ const Hero = () => {
                 className="mb-6 sm:mb-8"
               >
                 <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed px-2 sm:px-0">
-                  My expertise in diplomacy, international security, and strategic governance is supported by a Ph.D. in International Studies, dual master's degrees, and specialized diplomas. Recognized nationally and internationally through honors, awards, and honorary doctorates.
+                  My expertise in Diplomacy, lntelligence, International Security, and Strategic Governance is supported by a Ph.D. in International Studies, dual master's degrees, and specialized diplomas. Recognized nationally and internationally through honors, awards, and honorary doctorates.
                 </p>
               </motion.div>
 
