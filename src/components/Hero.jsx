@@ -27,7 +27,7 @@ const Hero = () => {
   // Function to handle CV view/download
   const handleViewCV = () => {
     // Open CV in a new tab
-    window.open('https://drive.google.com/file/d/1Za-HoFVEAGgVrk8amYPx2K9KxNO4zQ5g/view?usp=sharing', '_blank', 'noopener,noreferrer');
+    window.open('https://drive.google.com/file/d/1sTuNGbKQ4E5NU7jhzuMPCyE8cpernrBl/view?usp=sharing', '_blank', 'noopener,noreferrer');
   };
 
   return (
